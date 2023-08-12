@@ -27,7 +27,7 @@ async function SearchResults({ searchParams: { term } }: PageProps) {
   const searchResults = await search(term);
   return (
     <div className="flex flex-col gap-12">
-      <Search />
+      <Search term={term} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
         {searchResults?.map((row, i) => (
           <SongCard

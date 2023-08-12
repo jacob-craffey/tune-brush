@@ -14,7 +14,7 @@ function Header() {
     <Navbar isBordered>
       <NavbarBrand>
         <Link className="font-bold text-inherit" href={"/"}>
-          tune-brush
+          Tune Brush
         </Link>
       </NavbarBrand>
       <NavbarContent justify="end">

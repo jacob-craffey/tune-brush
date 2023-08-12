@@ -73,7 +73,7 @@ async function Page({ params }: PageProps) {
   const res = await search(params.id);
   const formattedLyrics = formatLyrics(res.lyrics);
   return (
-    <div>
+    <div className="max-w-screen-lg m-auto">
       <div className="flex flex-col gap-10">
         <div className="flex gap-10">
           <div className="flex flex-col flex-grow m-auto">
