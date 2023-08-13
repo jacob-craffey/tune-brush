@@ -4,6 +4,7 @@ import { load } from "cheerio";
 import React from "react";
 import Image from "next/image";
 import { Response, Song } from "@/typings";
+import MagicButton from "./MagicButton";
 
 type PageProps = {
   params: {
@@ -76,9 +77,10 @@ async function Page({ params }: PageProps) {
     <div className="max-w-screen-lg m-auto">
       <div className="flex flex-col gap-10">
         <div className="flex gap-10">
-          <div className="flex flex-col flex-grow m-auto">
+          <div className="flex flex-col flex-grow m-auto gap-3">
             <h1 className="text-xl sm:text-5xl">{res.title}</h1>
             <h2 className="text-l sm:text-xl">{res.artist_names}</h2>
+            <MagicButton lyrics={res.lyrics} />
           </div>
 
           <div className="max-w-[50%]">
