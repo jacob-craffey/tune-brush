@@ -30,17 +30,22 @@ export async function createChatCompletion(prompt: string) {
 }
 
 export async function generateImage(prompt: string) {
+  console.log("generateImage called with prompt:", prompt);
+
   try {
     const trimmedPrompt = prompt.substring(0, 200);
+    console.log("Trimmed prompt:", trimmedPrompt);
 
     const response = await openai.createImage({
       prompt: trimmedPrompt,
       n: 1,
       size: "256x256",
     });
+    console.log("openai.createImage response:", response);
+
     return response.data.data[0].url;
   } catch (error) {
-    console.error(error);
+    console.error("Error in generateImage:", error);
     throw error;
   }
 }
