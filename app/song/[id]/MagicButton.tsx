@@ -24,8 +24,6 @@ async function serverSideCall(
   const data = await response.json();
   const prompt = data.lyrics;
 
-  console.log(data);
-
   const imageParams = {
     prompt,
   };
