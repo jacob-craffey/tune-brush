@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/magic-button": {
-      "maxDuration": 10
-    }
-  }
-}
