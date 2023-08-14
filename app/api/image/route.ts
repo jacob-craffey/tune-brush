@@ -1,4 +1,4 @@
-import { createChatCompletion, generateImage } from "@/app/services/openai";
+import { generateImage } from "@/app/services/openai";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { getServerSession } from "next-auth";
@@ -24,13 +24,7 @@ export async function POST(request: Request) {
   }
 
   const data = await request.json();
-
-  const lyrics = await createChatCompletion(data.lyrics);
-  if (!lyrics.data.choices[0].message?.content) {
-    return new Response("Error creating chat completion", { status: 500 });
-  }
-
-  const url = await generateImage(lyrics.data.choices[0].message?.content);
+  const url = await generateImage(data.prompt);
   return new Response(
     JSON.stringify({
       url,

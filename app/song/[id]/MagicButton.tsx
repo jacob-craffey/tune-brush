@@ -16,12 +16,26 @@ async function serverSideCall(
     lyrics,
   };
 
-  const response = await fetch("/api/magic-button", {
+  const response = await fetch("/api/lyrics", {
     method: "POST",
     body: JSON.stringify(params),
   });
+
   const data = await response.json();
-  setUrl(data.url);
+  const prompt = data.lyrics;
+
+  console.log(data);
+
+  const imageParams = {
+    prompt,
+  };
+  const image = await fetch("/api/image", {
+    method: "POST",
+    body: JSON.stringify(imageParams),
+  });
+
+  const url = await image.json();
+  setUrl(url.url);
   onOpen();
 }
 

@@ -27,6 +27,7 @@ function Search({ term }: Params) {
         size="md"
         type="text"
         label="Song"
+        className="max-w-md m-auto"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         ref={inputRef}
