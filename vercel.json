@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/magic-button/route.ts": {
+    "api/magic-button": {
       "maxDuration": 10
     }
   }
