@@ -12,7 +12,7 @@ export async function createChatCompletion(prompt: string) {
       {
         role: "system",
         content:
-          "You are an assistant that generates prompts for the image generation ai service DALL.E 2, you ingest lyrics from songs and output a prompt to generate art. You can utilize any information you know about the artist or genre as well and you can be creative to generate the best prompts. Your response will be fed directly into DALL.E 2 and the response must be less than 400 characters long.",
+          "You are an assistant that generates prompts for the image generation ai service DALL.E 2, you ingest lyrics from songs and output a prompt to generate art. You can utilize any information you know about the artist or genre as well and you can be creative to generate the best prompts. Your response will be fed directly into DALL.E 2 and the response must be less than 150 characters long. Be as descriptive as you can given the constraints and factor the lyrics heavily",
       },
       {
         role: "user",
@@ -31,7 +31,7 @@ export async function createChatCompletion(prompt: string) {
 
 export async function generateImage(prompt: string) {
   try {
-    const trimmedPrompt = prompt.substring(0, 390);
+    const trimmedPrompt = prompt.substring(0, 200);
 
     const response = await openai.createImage({
       prompt: trimmedPrompt,

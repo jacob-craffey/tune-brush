@@ -1,5 +1,5 @@
 "use client";
-import { Button, useDisclosure } from "@nextui-org/react";
+import { Button, Spinner, useDisclosure } from "@nextui-org/react";
 import React, { useState } from "react";
 import ImageModal from "./ImageModal";
 
@@ -10,8 +10,10 @@ type MagicButtonProps = {
 async function serverSideCall(
   lyrics: string,
   onOpen: () => void,
-  setUrl: React.Dispatch<React.SetStateAction<string>>
+  setUrl: React.Dispatch<React.SetStateAction<string>>,
+  setIsGenerating: React.Dispatch<React.SetStateAction<boolean>>
 ) {
+  setIsGenerating(true);
   const params = {
     lyrics,
   };
@@ -34,12 +36,14 @@ async function serverSideCall(
 
   const url = await image.json();
   setUrl(url.url);
+  setIsGenerating(false);
   onOpen();
 }
 
 function MagicButton({ lyrics }: MagicButtonProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [url, setUrl] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
 
   return (
     <>
@@ -47,9 +51,9 @@ function MagicButton({ lyrics }: MagicButtonProps) {
       <Button
         className="w-fit"
         type="submit"
-        onClick={() => serverSideCall(lyrics, onOpen, setUrl)}
+        onClick={() => serverSideCall(lyrics, onOpen, setUrl, setIsGenerating)}
       >
-        Generate Art
+        {isGenerating ? <Spinner /> : "Generate Image"}
       </Button>
     </>
   );
