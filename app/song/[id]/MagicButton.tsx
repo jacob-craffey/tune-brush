@@ -2,6 +2,7 @@
 import { Button, Spinner, useDisclosure } from "@nextui-org/react";
 import React, { useState } from "react";
 import ImageModal from "./ImageModal";
+import { getSession } from "next-auth/react";
 
 type MagicButtonProps = {
   lyrics: string;
@@ -14,7 +15,10 @@ async function serverSideCall(
   setIsGenerating: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   setIsGenerating(true);
+  const session = await getSession();
+
   const params = {
+    email: session?.user?.email,
     lyrics,
   };
 
@@ -24,18 +28,8 @@ async function serverSideCall(
   });
 
   const data = await response.json();
-  const prompt = data.lyrics;
 
-  const imageParams = {
-    prompt,
-  };
-  const image = await fetch("/api/image", {
-    method: "POST",
-    body: JSON.stringify(imageParams),
-  });
-
-  const url = await image.json();
-  setUrl(url.url);
+  setUrl(data.url);
   setIsGenerating(false);
   onOpen();
 }
