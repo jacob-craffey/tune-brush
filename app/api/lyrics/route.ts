@@ -1,5 +1,7 @@
 import { createChatCompletion } from "@/app/services/openai";
 
+export const runtime = "edge"; // 'nodejs' is the default
+
 export async function POST(request: Request) {
   console.log("POST request received");
 
