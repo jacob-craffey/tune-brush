@@ -23,7 +23,7 @@ function SongCard({ title, thumbnailUrl, id }: SongCardProps) {
           width={400}
           height={400}
         />
-        <CardFooter className=" before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
+        <CardFooter className=" border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10 backdrop-brightness-50">
           <p className=" text-white/80">{title}</p>
         </CardFooter>
       </Card>
