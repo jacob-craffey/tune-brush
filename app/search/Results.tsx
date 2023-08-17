@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import React, { Suspense } from "react";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import SongCard from "./SongCard";
+import { Response } from "@/typings";
 type ResultsProps = {
   term: string;
 };
